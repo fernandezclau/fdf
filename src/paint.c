@@ -6,21 +6,12 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 20:42:48 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/10 16:51:18 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:34:48 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-//#include "fdf.h"
-#include <stdio.h>
-#include "minilibx/mlx.h"
+#include "../include/fdf.h"
 
-typedef struct	s_data {
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-}				t_data;
 /*
 ** DESCRIPTION: Gets the max value from two numbers
 */

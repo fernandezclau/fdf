@@ -6,79 +6,50 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 20:54:14 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/09 20:39:13 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:57:52 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <fcntl.h>
-#include <stdlib.h>
-#include <stdio.h>
-#include <unistd.h>
+#include "../include/fdf.h"
 
 int	get_matrix_width(char *file_name)
 {
-	int	fd;
-	int	read_bytes;
-	char	*buffer;
+	int		fd;
+	int		width;
+	char	*line;
+	char	**split;
 	
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		return (-1);
-	buffer = (char *)malloc(sizeof(char));
-	int width = 0;
-	while (*buffer != '\n')
-	{
-		read_bytes = read(fd, buffer, 1);
-		if (*buffer != ' ')
+	line = get_next_line(fd);
+	line = ft_strtrim(line, " ");
+	split = ft_split(line, ' ');
+	width = 0;
+	if (split)
+		while (split[width] != NULL)
 			width++;
-	}
 	close(fd);
-	return (width--);
+	return (width);
 }
 
 int get_matrix_height(char *file_name)
 {
 	int		fd;
-	int		read_bytes;
 	char	buffer[1];
+	int		height;
 
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		return (-1);
-	int height = 0;
+	height = 0;
 	while (read(fd, buffer, 1) > 0)
-	{
 		if (*buffer == '\n')
 			height++;
-	}
 	close(fd);
 	return (height);
 }
-int	ft_atoi(const char *str)
-{
-	int	sign;
-	int	result;
-	int	i;
 
-	i = 0;
-	sign = 1;
-	result = 0;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n'
-		|| str[i] == '\r' || str[i] == '\f' || str[i] == '\v')
-		str++;
-	if (str[i] == '-' || str[i] == '+')
-	{
-		if (str[i] == '-')
-			sign *= -1;
-		i++;
-	}
-	while (str[i] >= '0' && str[i] <= '9')
-	{
-		result = result * 10 + (str[i] - '0');
-		i++;
-	}
-	return (sign * result);
-}
 void	get_values(char *file_name, int width, int height)
 {
 	int	**z_matrix;
@@ -89,16 +60,13 @@ void	get_values(char *file_name, int width, int height)
 	while (i <= height)
 		z_matrix[i++] = (int *)malloc(sizeof(int) * (width + 1));
 	int fd = open(file_name, O_RDONLY);
+	while (get_next_line(fd))
+	{
+
+	}
 	if (fd == -1)
 		return ;
 	i = 0;
-	printf("\n");
-	while (read(fd, buffer, 1) > 0)
-	{
-		//get_next_line();
-		//split
-		//atoi
-	}
 	close(fd);
 }
 
