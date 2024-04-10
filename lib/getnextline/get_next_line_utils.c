@@ -6,15 +6,14 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:52:33 by claferna          #+#    #+#             */
-/*   Updated: 2024/03/27 22:48:45 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:36:41 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-#include <stdio.h>
 
 /* DESC: The 'ft_find_line' finds the '\n' character in BUFFER_SIZE range.*/
-int	ft_find_line(t_list *list)
+int	ft_find_line(t_list_g *list)
 {
 	int	i;
 
@@ -35,7 +34,7 @@ int	ft_find_line(t_list *list)
 }
 
 /* DESC: The 'ft_lstlast' function finds the last element of a list.*/
-t_list	*ft_lstlast(t_list *list)
+t_list_g	*ft_lstlast_item(t_list_g *list)
 {
 	if (!list)
 		return (NULL);
@@ -45,15 +44,15 @@ t_list	*ft_lstlast(t_list *list)
 }
 
 /* DESC: The 'ft_lstadd_line' adds a new element to a list.*/
-void	ft_lstadd_line(t_list **list, char *buffer)
+void	ft_lstadd_line(t_list_g **list, char *buffer)
 {
-	t_list	*new_node;
-	t_list	*last_node;
+	t_list_g	*new_node;
+	t_list_g	*last_node;
 
-	new_node = (t_list *)malloc(sizeof(t_list));
+	new_node = (t_list_g *)malloc(sizeof(t_list_g));
 	if (!list)
 		return ;
-	last_node = ft_lstlast(*list);
+	last_node = ft_lstlast_item(*list);
 	if (!new_node)
 		return ;
 	if (!last_node)
@@ -65,7 +64,7 @@ void	ft_lstadd_line(t_list **list, char *buffer)
 }
 
 /* DESC: The 'ft_get_len_line' gets the length of the current line.*/
-int	ft_get_len_line(t_list *list)
+int	ft_get_len_line(t_list_g *list)
 {
 	int	len;
 	int	i;
@@ -94,7 +93,7 @@ int	ft_get_len_line(t_list *list)
 
 /* DESC: The 'ft_extract_line_lst' extracts all the elements of the list 
 corresponding to the current line.*/
-void	ft_extract_line_lst(t_list *list, char *line)
+void	ft_extract_line_lst(t_list_g *list, char *line)
 {
 	int	i;
 	int	k;

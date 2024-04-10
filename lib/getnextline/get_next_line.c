@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/25 16:49:34 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/01 08:55:41 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/10 18:10:24 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 /*
 ** DESC: The 'ft_lstnew' creates a list of lines till '\n' is found.
 */
-int	ft_lstnew(t_list **list, int fd)
+int	ft_read(t_list_g **list, int fd)
 {
 	int		read_bytes;
 	char	*buffer;
@@ -46,7 +46,7 @@ int	ft_lstnew(t_list **list, int fd)
 /*
 ** DESC: The 'ft_get_line' extracts from the list the current line of the file.
 */
-char	*ft_get_line(t_list *list)
+char	*ft_get_line(t_list_g *list)
 {
 	int		len_line;
 	char	*line;
@@ -63,9 +63,9 @@ char	*ft_get_line(t_list *list)
 
 /* DESC: The 'ft_erase_elements' erases the elements of the list corresponding
 to the line that has just been printed.*/
-void	ft_erase_elements(t_list **list, t_list *clean_node, char *buffer)
+void	ft_erase_elements(t_list_g **list, t_list_g *clean_node, char *buffer)
 {
-	t_list	*aux;
+	t_list_g	*aux;
 
 	aux = NULL;
 	if (!list)
@@ -92,19 +92,19 @@ void	ft_erase_elements(t_list **list, t_list *clean_node, char *buffer)
 ** DESC: The 'ft_clean_list' cleans the list for further reads. This is to say
 **       the elements that have already been printed.
 */
-void	ft_clean_list(t_list **list)
+void	ft_clean_list(t_list_g **list)
 {
-	t_list	*last_node;
-	t_list	*clean_node;
-	char	*next_line;
-	int		i;
-	int		k;
+	t_list_g	*last_node;
+	t_list_g	*clean_node;
+	char		*next_line;
+	int			i;
+	int			k;
 
 	next_line = (char *)malloc(sizeof(char) * BUFFER_SIZE + 1);
-	clean_node = (t_list *)malloc(sizeof(t_list));
+	clean_node = (t_list_g *)malloc(sizeof(t_list_g));
 	if (!next_line || !clean_node)
 		return ;
-	last_node = ft_lstlast(*list);
+	last_node = ft_lstlast_item(*list);
 	i = 0;
 	k = 0;
 	while (last_node->content[i] != '\0' && last_node->content[i] != '\n')
@@ -125,13 +125,13 @@ void	ft_clean_list(t_list **list)
 */
 char	*get_next_line(int fd)
 {
-	static t_list	*list;
+	static t_list_g	*list;
 	char			*next_line;
-	t_list			*aux;
+	t_list_g		*aux;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (0);
-	if (ft_lstnew(&list, fd) == -1)
+	if (ft_read(&list, fd) == -1)
 	{
 		while (list)
 		{
