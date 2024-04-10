@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/10 17:39:47 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:29:47 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,12 @@
 # include <stdio.h>		//PRINTF
 # include <unistd.h>	//OPEN, CLOSE FILES
 
-# include "/lib/minilibx/mlx.h"				//minilbx
-# include "/lib/libft/libft.h"				//libft
-# include "/lib/getnextline/get_next_line.h"//get_next_line
+# include "../lib/minilibx/mlx.h"				//minilbx
+# include "../lib/libft/libft.h"				//libft
+# include "../lib/getnextline/get_next_line.h"//get_next_line
 
 //INFO: cc main.c -o mi_programa -L./minilibx -lmlx -framework OpenGL -framework AppKit
-
+//-Wall -Wextra -Werror src/process_map.c -o mi_programa -L./lib/minilibx -lmlx -framework OpenGL -framework AppKit lib/libft/libft.a lib/getnextline/getnextline.a
 //optimisation purpouses
 typedef struct	s_data
 {

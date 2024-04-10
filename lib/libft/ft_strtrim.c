@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:29:24 by claferna          #+#    #+#             */
-/*   Updated: 2024/03/17 20:31:44 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/10 20:53:12 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** adn from the end of 's1', until it finds a character not belongning to
 ** 'set'. The resulting string is returned with a reservation of malloc.
 */
-
+#include <stdio.h>
 #include "libft.h"
 
 char	*ft_strtrim(char const *s1, char const *set)
@@ -27,10 +27,10 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	if (!s1 || !set)
 		return (0);
-	while (*s1 && ft_strchr(set, *s1) != 0)
-		s1++;
+	/*while (*s1 && ft_strchr(set, *s1) != 0)
+		s1++;*/
 	i = ft_strlen(s1);
-	while (i && s1[i -1] && ft_strchr(set, s1[i -1]) != 0)
+	while (i && s1[i -1] && ft_strchr(set, s1[i]) != 0)
 		i--;
 	aux_s1 = (char *)malloc(sizeof(char) * (i + 1));
 	if (!aux_s1)

@@ -6,7 +6,7 @@
 #    By: claferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/03 18:36:22 by claferna          #+#    #+#              #
-#    Updated: 2024/04/10 17:21:09 by claferna         ###   ########.fr        #
+#    Updated: 2024/04/10 19:09:32 by claferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,12 +42,20 @@ GNL_A		=	$(GNL) getnextline.a
 
 LBX			=	./lib/minilibx
 LBX_A		=	$(LBX) lmx.a
+LBX_FLAGS	=	-framework OpenGL -framework AppKit
+
+# ---------------------------------
+# --------- DIRECTORIES -----------
+
+SRCDIR		=	src
+
+OBJDIR		=	obj
 
 # ---------------------------------
 # ---------- SRC & OBJS -----------
 # ---------------------------------
 
-SRC			=	main.c	paint.c	process_map.c window_utils.c\
+SRC			=	src/main.c src/paint.c src/process_map.c src/window_utils.c
 
 OBJS		=	$(SRC:.c=.o)
 
@@ -57,16 +65,22 @@ OBJS		=	$(SRC:.c=.o)
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJS)
-				make - C $(LIBFT) -f Makefile
-				cp $(LIBT_A) $(NAME)
+				make -C $(GNL) -f Makefile
+				make -C $(LIBFT) -f Makefile
+				make -C $(LBX) -f Makefile
+				$(CC) $(CFLAGS) src/main.c -o mi_programa -L$(LBX) -lmlx $(LBX_FLAGS)
 				$(AR) $(NAME) $(OBJS)
 
 clean		:	
-				$(RM) $(OBJS)
+				$(RM) $(OBJS) 
+				$(RM) mi_programa
+				make -C $(GNL) clean
 				make -C $(LIBFT) clean
+				make -C $(LBX) clean
 
 fclean		:	clean
 				$(RM) $(NAME)
+				make -C $(GNL) fclean
 				make -C $(LIBFT) fclean
 
 re			:	fclean all
