@@ -50,20 +50,41 @@ int get_matrix_height(char *file_name)
 	return (height);
 }
 
-void	get_values(char *file_name, int width, int height)
+void	process_line(char *line, char *z_matrix)
+{
+	char	**items;
+	int		i;
+
+	i = 0;
+	items = ft_split(line, ' ');
+	while(items[i])
+	{
+		*z_matrix[i] = ft_atoi(items[i]);
+		free(items[i]);
+		i++;
+	}
+}
+
+void	fill_matrix(char *file_name, int width, int height)
 {
 	int	**z_matrix;
 	char buffer[1];
-
+	char *line;
+	
 	z_matrix = (int **)malloc(sizeof(int) * (height + 1));
 	int i = 0;
 	while (i <= height)
 		z_matrix[i++] = (int *)malloc(sizeof(int) * (width + 1));
 	int fd = open(file_name, O_RDONLY);
-	while (get_next_line(fd))
+	i = 0;
+	while (i < height)
 	{
-
+		line = get_next_line(fd);
+		process_line(line, z_matrix[i])
+		free(line);
+		i++;
 	}
+	z_matrix[i] = '\0'; 
 	if (fd == -1)
 		return ;
 	i = 0;

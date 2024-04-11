@@ -39,8 +39,22 @@ typedef struct	s_map
 {
 	int		width;
 	int		height;
+	int		**matrix;
 
 }				t_map;
+
+typedef struct s_coords
+{
+	float	x;
+	float	y;
+
+	void initialice(float _x, float _y)
+	{
+		x = _x;
+		y = _y;
+	}
+}				t_coords;
+
 
 // -------- MAIN --------
 
