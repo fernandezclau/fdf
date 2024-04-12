@@ -12,6 +12,9 @@
 
 #include "../include/fdf.h"
 
+/*
+** DESC: The 'get_matrix_width' function gets the width of the map.
+*/
 int	get_matrix_width(char *file_name)
 {
 	int		fd;
@@ -33,6 +36,9 @@ int	get_matrix_width(char *file_name)
 	return (width);
 }
 
+/*
+** DESC: The 'get_matrix_height' function gets the height of a map.
+*/
 int get_matrix_height(char *file_name)
 {
 	int		fd;
@@ -50,21 +56,9 @@ int get_matrix_height(char *file_name)
 	return (height);
 }
 
-void	process_line(char *line, char *z_matrix)
-{
-	char	**items;
-	int		i;
-
-	i = 0;
-	items = ft_split(line, ' ');
-	while(items[i])
-	{
-		*z_matrix[i] = ft_atoi(items[i]);
-		free(items[i]);
-		i++;
-	}
-}
-
+/*
+** DESC: The 'fill_matrix' function fills the matrix with the map info.
+*/
 void	fill_matrix(char *file_name, t_map *map)
 {
 	int	**z_matrix;
