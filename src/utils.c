@@ -10,6 +10,20 @@ int	get_max(int num1, int num2)
 }
 
 /*
+** DESC: The 'clean_line' cleans the line bad characters?
+*/
+void	clean_line(char *line)
+{
+}
+
+/*
+** DESC: The 'process_line' process a line pouring it into the matrix.
+*/
+void	process_line(char *file_name, t_map *map)
+{
+
+}
+/*
 ** DESC: Scaletes the coordinates.
 */
 void    scale_coords(t_coords *coords_a, t_coords *coords_b, int scale)

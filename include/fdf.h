@@ -13,18 +13,21 @@
 #ifndef FDF_H
 # define FDF_H
 
-# include <fcntl.h>		//READ FILES
+# include <fcntl.h>	//READ FILES
 # include <stdlib.h>	//MALLOC
-# include <stdio.h>		//PRINTF
+# include <stdio.h>	//PRINTF
 # include <unistd.h>	//OPEN, CLOSE FILES
+# include <math.h>	//MATH LIB
 
-# include "../lib/minilibx/mlx.h"				//minilbx
-# include "../lib/libft/libft.h"				//libft
-# include "../lib/getnextline/get_next_line.h"//get_next_line
+# include "../lib/minilibx/mlx.h"		//minilbx
+# include "../lib/libft/libft.h"		//libft
+# include "../lib/getnextline/get_next_line.h"	//get_next_line
 
 //INFO: cc main.c -o mi_programa -L./minilibx -lmlx -framework OpenGL -framework AppKit
 //-Wall -Wextra -Werror src/process_map.c -o mi_programa -L./lib/minilibx -lmlx -framework OpenGL -framework AppKit lib/libft/libft.a lib/getnextline/getnextline.a
-//optimisation purpouses
+/*
+** DESC: The 't_data' struct is due to optimisation purpouses.
+*/
 typedef struct	s_data
 {
 	void	*img;
@@ -34,7 +37,9 @@ typedef struct	s_data
 	int		endian;
 }				t_data;
 
-//struct that contais map info
+/*
+** DESC: The 't_map' struct contains info about a map. 
+*/
 typedef struct	s_map
 {
 	int		width;
@@ -43,6 +48,9 @@ typedef struct	s_map
 
 }				t_map;
 
+/*
+** DESC: The 't_coords' struct contains the coordinates (x, y).
+*/
 typedef struct s_coords
 {
 	float	x;
@@ -50,14 +58,20 @@ typedef struct s_coords
 
 }				t_coords;
 
-// ----- Cord Cons ------
+// ------- COORDS -------
 void	initialize_coords(t_coords *coords, float _x, float _y);
-// -------- MAIN --------
-
+void	scale_coords(t_coords *a, t_coords *b, int scale);
+void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix);
 // ------- PAINT --------
-
-// ---- PROCESS MAP -----
-
-// ---- WINDOW UTILS ----
-
+void	paint(t_data *img, t_map *map);
+void	join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img);
+// ------- MATRIX -------
+int	get_matrix_width(char *file_name);
+int	get_matrix_height(char *file_name);
+void	fill_matrix(char **file_name, t_map *map);
+// -------- UTILS -------- 
+int	get_max(int num1, int num2);
+void	process_line(char *file_name, char *z_matrix);
+void	clean_line(char *line);
+// -------- WINDOW -------
 #endif

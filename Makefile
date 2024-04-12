@@ -55,7 +55,7 @@ OBJDIR		=	obj
 # ---------- SRC & OBJS -----------
 # ---------------------------------
 
-SRC			=	src/main.c src/paint.c src/process_map.c src/window_utils.c
+SRC			=	src/*.c
 
 OBJS		=	$(SRC:.c=.o)
 

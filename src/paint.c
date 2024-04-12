@@ -12,6 +12,8 @@
 
 #include "../include/fdf.h"
 
+/*
+** DESC: The 'paint' function represents the 
 void	paint(t_data *img, t_map *map)
 {
 	int	x;
@@ -40,7 +42,7 @@ void	paint(t_data *img, t_map *map)
 }
 
 /*
-** DESCRIPTION: Join two dots in the map
+** DES: Join two dots in the map
 */
 void	join_dots(t_coords *coords_a, t_coords *coords_b, t_map *map, t_data *img)
 {
