@@ -55,13 +55,15 @@ OBJDIR		=	obj
 # ---------- SRC & OBJS -----------
 # ---------------------------------
 
-SRC			=	src/*.c
+SRC		=	src/main.c src/matrix.c src/paint.c src/pixel.c src/t_coords.c\
+			src/utils.c src/window_utils.c
 
 OBJS		=	$(SRC:.c=.o)
 
 # ---------------------------------
 # ------------ RULES --------------
 # ---------------------------------
+
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJS)

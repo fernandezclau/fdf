@@ -62,19 +62,18 @@ int get_matrix_height(char *file_name)
 void	fill_matrix(char *file_name, t_map *map)
 {
 	int	**z_matrix;
-	char buffer[1];
 	char *line;
 	
 	z_matrix = (int **)malloc(sizeof(int) * (map->height + 1));
 	int i = 0;
-	while (i <= height)
+	while (i <= map->height)
 		z_matrix[i++] = (int *)malloc(sizeof(int) * (map->width + 1));
 	int fd = open(file_name, O_RDONLY);
 	i = 0;
 	while (i < map->height)
 	{
 		line = get_next_line(fd);
-		process_line(line, z_matrix[i])
+		process_line(line, z_matrix[i]);
 		free(line);
 		i++;
 	}
@@ -95,6 +94,6 @@ int main()
 	width = get_matrix_width(file);
 	printf("Height: %d\n", height);
 	printf("Width: %d", width);
-	get_values(file, width, height);
+//	get_values(file, width, height);
 }	
 

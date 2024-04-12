@@ -68,10 +68,10 @@ void	join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img);
 // ------- MATRIX -------
 int	get_matrix_width(char *file_name);
 int	get_matrix_height(char *file_name);
-void	fill_matrix(char **file_name, t_map *map);
+void	fill_matrix(char *file_name, t_map *map);
 // -------- UTILS -------- 
 int	get_max(int num1, int num2);
-void	process_line(char *file_name, char *z_matrix);
+void	process_line(char *file_name, int *z_matrix);
 void	clean_line(char *line);
 // -------- WINDOW -------
 #endif
