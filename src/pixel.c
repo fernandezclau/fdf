@@ -1,4 +1,8 @@
-//Pixels
+#include "../include/fdf.h"
+
+/*
+** DESC: The 'my_mlx_pixel_put' function optimises the representation of bytes.
+*/
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
