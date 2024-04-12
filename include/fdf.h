@@ -48,14 +48,10 @@ typedef struct s_coords
 	float	x;
 	float	y;
 
-	void initialice(float _x, float _y)
-	{
-		x = _x;
-		y = _y;
-	}
 }				t_coords;
 
-
+// ----- Cord Cons ------
+void	initialize_coords(t_coords *coords, float _x, float _y);
 // -------- MAIN --------
 
 // ------- PAINT --------

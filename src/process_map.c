@@ -65,19 +65,19 @@ void	process_line(char *line, char *z_matrix)
 	}
 }
 
-void	fill_matrix(char *file_name, int width, int height)
+void	fill_matrix(char *file_name, t_map *map)
 {
 	int	**z_matrix;
 	char buffer[1];
 	char *line;
 	
-	z_matrix = (int **)malloc(sizeof(int) * (height + 1));
+	z_matrix = (int **)malloc(sizeof(int) * (map->height + 1));
 	int i = 0;
 	while (i <= height)
-		z_matrix[i++] = (int *)malloc(sizeof(int) * (width + 1));
+		z_matrix[i++] = (int *)malloc(sizeof(int) * (map->width + 1));
 	int fd = open(file_name, O_RDONLY);
 	i = 0;
-	while (i < height)
+	while (i < map->height)
 	{
 		line = get_next_line(fd);
 		process_line(line, z_matrix[i])

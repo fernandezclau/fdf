@@ -12,7 +12,7 @@
 
 #include "../include/fdf.h"
 
-void	paint(t_data *img, t_map map)
+void	paint(t_data *img, t_map *map)
 {
 	int	x;
 	int	y;
@@ -30,9 +30,9 @@ void	paint(t_data *img, t_map map)
 			coords_x.initialice(x + 1, y);
 			coords_y.initialice(x, y + 1);
 			if (x < map->width - 1)
-				join_dots(coords, coords_x, map, img);
+				join_dots(coords, coords_x, &map, &img);
 			if (y < map->height - 1)
-				join_dots(coords, coords_y, map, img);
+				join_dots(coords, coords_y, &map, &img);
 			y++;
 		}
 		x++;
@@ -42,7 +42,7 @@ void	paint(t_data *img, t_map map)
 /*
 ** DESCRIPTION: Join two dots in the map
 */
-void	join_dots(t_coords coords_a, t_coords coords_b, t_map map, t_data *img)
+void	join_dots(t_coords *coords_a, t_coords *coords_b, t_map *map, t_data *img)
 {
 	int	x_diff;
 	int	y_diff;
