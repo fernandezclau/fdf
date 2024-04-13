@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 20:54:14 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/13 09:22:05 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/13 18:46:41 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,44 +56,61 @@ int get_matrix_height(char *file_name)
 	return (height);
 }
 
+void	process_line(char *line, int  *z_matrix)
+{
+	char **items;
+	int		num;
+	int		i;
+
+	i = 0;
+	items = ft_split(line, ' ');
+	if (items)
+	{
+		while(items[i])
+		{
+			num = ft_atoi(items[i]);
+			z_matrix[i] = num;
+			free(items[i]);
+			i++;
+		}
+	}
+}
+
 /*
 ** DESC: The 'fill_matrix' function fills the matrix with the map info.
 */
 void	fill_matrix(char *file_name, t_map *map)
 {
-	int	**z_matrix;
 	char *line;
 	
-	z_matrix = (int **)malloc(sizeof(int) * (map->height + 1));
+	map->matrix = (int **)malloc(sizeof(int *) * (map->height + 1));
 	int i = 0;
 	while (i <= map->height)
-		z_matrix[i++] = (int *)malloc(sizeof(int) * (map->width + 1));
+		map->matrix[i++] = (int *)malloc(sizeof(int) * (map->width + 1));
 	int fd = open(file_name, O_RDONLY);
 	i = 0;
 	while (i < map->height)
 	{
 		line = get_next_line(fd);
-		process_line(line, z_matrix[i]);
+		process_line(line, map->matrix[i]);
 		free(line);
 		i++;
 	}
-	z_matrix[i] = 0; 
+	map->matrix[i] = 0; 
 	if (fd == -1)
 		return ;
-	i = 0;
 	close(fd);
 }
 
 int main()
 {
 	char *file = "test_maps/42.fdf";
-	int height;		// width of the matrix --> struct
-	int width;		// height of the matrix --> struct
-
-	height = get_matrix_height(file);
-	width = get_matrix_width(file);
-	printf("Height: %d\n", height);
-	printf("Width: %d", width);
-//	get_values(file, width, height);
+	t_map	map;
+	map.height = get_matrix_height(file);
+	map.width = get_matrix_width(file);
+	printf("Height: %d\n", map.height);
+	printf("Width: %d", map.width);
+	fill_matrix(file, &map);
+   	printf("%d", map.matrix[8][3]);	
 }	
 
