@@ -32,8 +32,8 @@ void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix)
 	int a_z;
 	int b_z;
 
-	a_z = matrix[a->x][a->y];
-	b_z = matrix[b->x][b->y];
+	a_z = matrix[(int)a->x][(int)a->y];
+	b_z = matrix[(int)b->x][(int)b->y];
 	a->x = (a->x - a->y) * cos(ANGLE);
 	a->y = (a->x + a->y) * sin(ANGLE) - a_z;
 	b->x = (b->x - b->y) * cos(ANGLE);

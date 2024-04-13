@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/10 20:29:47 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/13 09:34:22 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,8 @@ int	get_matrix_height(char *file_name);
 void	fill_matrix(char *file_name, t_map *map);
 // -------- UTILS -------- 
 int	get_max(int num1, int num2);
-void	process_line(char *file_name, int *z_matrix);
+void	process_line(char *line, int *z_matrix);
 void	clean_line(char *line);
 // -------- WINDOW -------
+void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 #endif

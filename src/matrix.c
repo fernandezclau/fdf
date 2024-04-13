@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 20:54:14 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/10 20:57:52 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/13 09:22:05 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ void	fill_matrix(char *file_name, t_map *map)
 		free(line);
 		i++;
 	}
-	z_matrix[i] = '\0'; 
+	z_matrix[i] = 0; 
 	if (fd == -1)
 		return ;
 	i = 0;
