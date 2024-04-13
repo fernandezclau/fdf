@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/13 13:35:36 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/13 18:58:31 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@
 # include "../lib/getnextline/get_next_line.h"	//get_next_line
 
 //INFO: cc main.c -o mi_programa -L./minilibx -lmlx -framework OpenGL -framework AppKit
-//-Wall -Wextra -Werror src/process_map.c -o mi_programa -L./lib/minilibx -lmlx -framework OpenGL -framework AppKit lib/libft/libft.a lib/getnextline/getnextline.a
+// cc -Wall -Wextra -Werror src/matrix.c -o mi_programa -L./lib/minilibx -lmlx -framework OpenGL -framework AppKit lib/libft/libft.a lib/getnextline/getnextline.a
+
 /*
 ** DESC: The 't_data' struct is due to optimisation purpouses.
 */
@@ -45,6 +46,7 @@ typedef struct	s_map
 	int		width;
 	int		height;
 	int		**matrix;
+	char	*filename;
 
 }				t_map;
 
@@ -68,7 +70,7 @@ void	join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img);
 // ------- MATRIX -------
 int		get_matrix_width(char *file_name);
 int		get_matrix_height(char *file_name);
-void	fill_matrix(char *file_name, t_map *map);
+void	fill_matrix(t_map *map);
 // -------- UTILS -------- 
 int		get_max(int num1, int num2);
 void	process_line(char *line, int *z_matrix);

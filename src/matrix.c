@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 20:54:14 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/13 18:46:41 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/13 18:56:58 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ void	process_line(char *line, int  *z_matrix)
 /*
 ** DESC: The 'fill_matrix' function fills the matrix with the map info.
 */
-void	fill_matrix(char *file_name, t_map *map)
+void	fill_matrix(t_map *map)
 {
 	char *line;
 	
@@ -87,7 +87,7 @@ void	fill_matrix(char *file_name, t_map *map)
 	int i = 0;
 	while (i <= map->height)
 		map->matrix[i++] = (int *)malloc(sizeof(int) * (map->width + 1));
-	int fd = open(file_name, O_RDONLY);
+	int fd = open(map->filename, O_RDONLY);
 	i = 0;
 	while (i < map->height)
 	{
@@ -102,15 +102,29 @@ void	fill_matrix(char *file_name, t_map *map)
 	close(fd);
 }
 
+void	prepare_matrix(t_map *map)
+{
+	map->filename = "test_maps/42.fdf";
+	printf("El nombre del mapa: %s\n", map->filename);
+	map->height	= get_matrix_height(map->filename);
+	printf("La altura del mapa: %d\n", map->height);
+	map->width = get_matrix_width(map->filename);
+	printf("La anchura del mapa: %d\n", map->width);
+	fill_matrix(map);
+}
+
 int main()
 {
+	t_map map;
+	prepare_matrix(&map);
+	/*
 	char *file = "test_maps/42.fdf";
 	t_map	map;
 	map.height = get_matrix_height(file);
 	map.width = get_matrix_width(file);
 	printf("Height: %d\n", map.height);
 	printf("Width: %d", map.width);
-	fill_matrix(file, &map);
+	fill_matrix(file, &map);*/
    	printf("%d", map.matrix[8][3]);	
 }	
 
