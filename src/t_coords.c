@@ -36,6 +36,7 @@ void	scale_coords(t_coords *a, t_coords *b, int scale)
 ** DESC: The 'coord_to_isometric' functions converts the given coordinates to
 ** isometric proyection
 */
+/*
 void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix)
 {
 	int a_z;
@@ -47,4 +48,4 @@ void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix)
 	a->y = (a->x + a->y) * sin(ANGLE) - a_z;
 	b->y = (b->x - b->y) * cos(ANGLE);
 	b->y = (b->x + b->y) * sin(ANGLE) - b_z;
-}
+}*/
