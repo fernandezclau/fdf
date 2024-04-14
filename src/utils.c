@@ -22,15 +22,20 @@ void	clean_line(char *line)
 */
 void	process_line(char *line, int  *z_matrix)
 {
-	char **items;
-	int	i;
+	char	**items;
+	int		num;
+	int		i;
 	
 	i = 0;
 	items = ft_split(line, ' ');
-	while(items[i])
+	if (items)
 	{
-		z_matrix[i] = ft_atoi(items[i]);
-		free(items[i]);
-		i++;
+		while(items[i])
+		{
+			num = ft_atoi(items[i]);
+			z_matrix[i] = num;
+			free(items[i]);
+			i++;
+		}
 	}
 }

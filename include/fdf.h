@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/13 18:58:31 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/14 09:53:50 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,13 @@
 # include <unistd.h>	//OPEN, CLOSE FILES
 # include <math.h>	//MATH LIB
 
-# include "../lib/minilibx/mlx.h"		//minilbx
-# include "../lib/libft/libft.h"		//libft
+# include "../lib/minilibx/mlx.h"				//minilbx
+# include "../lib/libft/libft.h"				//libft
 # include "../lib/getnextline/get_next_line.h"	//get_next_line
+# include "../lib/printf/ft_printf.h"			//printf
 
 //INFO: cc main.c -o mi_programa -L./minilibx -lmlx -framework OpenGL -framework AppKit
-// cc -Wall -Wextra -Werror src/matrix.c -o mi_programa -L./lib/minilibx -lmlx -framework OpenGL -framework AppKit lib/libft/libft.a lib/getnextline/getnextline.a
-
+//cc -Wall -Wextra -Werror src/matrix.c -o mi_programa -L./lib/minilibx -lmlx -framework OpenGL -framework AppKit lib/libft/libft.a lib/getnextline/getnextline.a lib/printf/libftprintf.a fdf.a
 /*
 ** DESC: The 't_data' struct is due to optimisation purpouses.
 */
@@ -71,6 +71,7 @@ void	join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img);
 int		get_matrix_width(char *file_name);
 int		get_matrix_height(char *file_name);
 void	fill_matrix(t_map *map);
+void	initialize_matrix(t_map *map);
 // -------- UTILS -------- 
 int		get_max(int num1, int num2);
 void	process_line(char *line, int *z_matrix);

@@ -1,12 +1,12 @@
-
+/* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   process_file.c                                     :+:      :+:    :+:   */
+/*   matrix.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/04/08 20:54:14 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/13 18:56:58 by claferna         ###   ########.fr       */
+/*   Created: 2024/04/14 09:29:28 by claferna          #+#    #+#             */
+/*   Updated: 2024/04/14 09:49:02 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_matrix_width(char *file_name)
 	int		width;
 	char	*line;
 	char	**split;
-	
+
 	fd = open(file_name, O_RDONLY);
 	if (fd == -1)
 		return (-1);
@@ -39,7 +39,7 @@ int	get_matrix_width(char *file_name)
 /*
 ** DESC: The 'get_matrix_height' function gets the height of a map.
 */
-int get_matrix_height(char *file_name)
+int	get_matrix_height(char *file_name)
 {
 	int		fd;
 	char	buffer[1];
@@ -56,38 +56,22 @@ int get_matrix_height(char *file_name)
 	return (height);
 }
 
-void	process_line(char *line, int  *z_matrix)
-{
-	char **items;
-	int		num;
-	int		i;
-
-	i = 0;
-	items = ft_split(line, ' ');
-	if (items)
-	{
-		while(items[i])
-		{
-			num = ft_atoi(items[i]);
-			z_matrix[i] = num;
-			free(items[i]);
-			i++;
-		}
-	}
-}
-
 /*
 ** DESC: The 'fill_matrix' function fills the matrix with the map info.
 */
 void	fill_matrix(t_map *map)
 {
-	char *line;
-	
+	char	*line;
+	int		fd;
+	int		i;
+
 	map->matrix = (int **)malloc(sizeof(int *) * (map->height + 1));
-	int i = 0;
+	i = 0;
 	while (i <= map->height)
 		map->matrix[i++] = (int *)malloc(sizeof(int) * (map->width + 1));
-	int fd = open(map->filename, O_RDONLY);
+	fd = open(map->filename, O_RDONLY);
+	if (!fd)
+		return ;
 	i = 0;
 	while (i < map->height)
 	{
@@ -96,35 +80,44 @@ void	fill_matrix(t_map *map)
 		free(line);
 		i++;
 	}
-	map->matrix[i] = 0; 
+	map->matrix[i] = 0;
 	if (fd == -1)
 		return ;
 	close(fd);
 }
 
-void	prepare_matrix(t_map *map)
+/*
+** DESC: The 'intialize_matrix' function initializes all the members of the
+** 'map' struct variable.
+*/
+void	initialize_matrix(t_map *map)
 {
 	map->filename = "test_maps/42.fdf";
-	printf("El nombre del mapa: %s\n", map->filename);
-	map->height	= get_matrix_height(map->filename);
-	printf("La altura del mapa: %d\n", map->height);
+	ft_printf("El nombre del mapa: %s\n", map->filename);
+	map->height = get_matrix_height(map->filename);
+	ft_printf("La altura del mapa: %d\n", map->height);
 	map->width = get_matrix_width(map->filename);
-	printf("La anchura del mapa: %d\n", map->width);
+	ft_printf("La anchura del mapa: %d\n", map->width);
 	fill_matrix(map);
 }
-
+/*
 int main()
 {
 	t_map map;
-	prepare_matrix(&map);
-	/*
-	char *file = "test_maps/42.fdf";
-	t_map	map;
-	map.height = get_matrix_height(file);
-	map.width = get_matrix_width(file);
-	printf("Height: %d\n", map.height);
-	printf("Width: %d", map.width);
-	fill_matrix(file, &map);*/
-   	printf("%d", map.matrix[8][3]);	
-}	
-
+	initialize_matrix(&map);
+	int i = 0;
+	int j;
+	while (i < map.height)
+	{
+		j = 0;
+		while (j < map.width)
+		{	
+   			printf(" %d ", map.matrix[i][j]);	
+			if (map.matrix[i][j] == ' ')
+				printf("nooo");
+			j++;
+		}
+		printf("\n");
+		i++;
+	}
+}*/
