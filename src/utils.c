@@ -10,11 +10,12 @@ int	get_max(int num1, int num2)
 }
 
 /*
-** DESC: The 'clean_line' cleans the line bad characters?
+** DESC: The 'manage_errors' function prints an error message.
 */
-void	clean_line(char *line)
+int	manage_error(char *message)
 {
-	printf("%s", line);
+	ft_printf("%s", message);
+	return (-1);
 }
 
 /*
