@@ -6,7 +6,7 @@
 #    By: claferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/03 18:36:22 by claferna          #+#    #+#              #
-#    Updated: 2024/04/10 19:09:32 by claferna         ###   ########.fr        #
+#    Updated: 2024/04/14 09:56:34 by claferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,17 +31,20 @@ AR		=	ar -rc
 # ............ LIBFT ..............
 
 LIBFT		=	./lib/libft
-LIBFT_A		=	$(LIBFT) libft.a
+LIBFT_A		=	$(LIBFT)/libft.a
 
 # ......... GET_NEXT_LINE .........
 
 GNL			=	./lib/getnextline
-GNL_A		=	$(GNL) getnextline.a
+GNL_A		=	$(GNL)/getnextline.a
 
+# ........... PRINTF .............
+PRT			= 	./lib/printf
+PRT_A		=	$(PRT)/libftprintf.a
 # ........... MINILIBX ............
 
 LBX			=	./lib/minilibx
-LBX_A		=	$(LBX) lmx.a
+LBX_A		=	$(LBX) libmlx.a
 LBX_FLAGS	=	-framework OpenGL -framework AppKit
 
 # ---------------------------------
@@ -69,8 +72,9 @@ all			:	$(NAME)
 $(NAME)		:	$(OBJS)
 				make -C $(GNL) -f Makefile
 				make -C $(LIBFT) -f Makefile
+				make -C $(PRT) -f Makefile
 				make -C $(LBX) -f Makefile
-				$(CC) $(CFLAGS) src/main.c -o mi_programa -L$(LBX) -lmlx $(LBX_FLAGS)
+				$(CC) $(CFLAGS) src/main.c -o fdf -L$(LBX) -lmlx $(LBX_FLAGS) $(GNL_A) $(LIBT_A) $(PRT_A)
 				$(AR) $(NAME) $(OBJS)
 
 clean		:	
@@ -78,12 +82,14 @@ clean		:
 				$(RM) mi_programa
 				make -C $(GNL) clean
 				make -C $(LIBFT) clean
+				make -C $(PRT) clean
 				make -C $(LBX) clean
 
 fclean		:	clean
 				$(RM) $(NAME)
 				make -C $(GNL) fclean
 				make -C $(LIBFT) fclean
+				make -C $(PRT) fclean
 
 re			:	fclean all
 
