@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/14 19:06:01 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/15 17:39:51 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,7 @@ void	initialize_matrix(t_map *map);
 int		get_max(int num1, int num2);
 int		manage_error(char *message);
 void	process_line(char *line, int *z_matrix);
-void	clean_line(char *line);
-
+int		select_color(int x, int y, t_map *map);
 // -------- WINDOW -------
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 #endif

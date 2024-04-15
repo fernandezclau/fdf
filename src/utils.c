@@ -40,3 +40,20 @@ void	process_line(char *line, int  *z_matrix)
 		}
 	}
 }
+
+/*
+** DESC: The 'select_color' changes the color of the rendered bytes.
+*/
+int	select_color(int x, int y, t_map *map)
+{
+	int	aux_x;
+	int	aux_y;
+	int	aux_z;
+
+	aux_x = x - 20;
+	aux_y = y - 20;
+	aux_z = map->matrix[x][y];
+	if (aux_z > 0)
+		return (0xFF0000);
+	return (0x0000FF);
+}
