@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/15 17:39:51 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:08:49 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ typedef struct s_coords
 {
 	int	x;
 	int	y;
+	int	color;
 
 }				t_coords;
 

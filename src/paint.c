@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 20:42:48 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/15 17:44:45 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:22:24 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,23 +25,21 @@ void	paint(t_data *img, t_map *map)
 	t_coords	coords_y;
 	
 	x = 1;	
-	while(x < map->width) 
+	while(x <= map->width)
 	{
 		y = 1;
-		while(y < map->height)
-		{
-			int z = map->matrix[x-1][y -1];
-			printf("ESTA ES LA ZZZZ: %d\n", z);
+		while(y <= map->height)
+			int z = map->matrix[y - 1][x - 1];
 			initialize_coords(&coords, x  + 20, y  + 20);
 			initialize_coords(&coords_x, x  + 40, y + 20);
 			initialize_coords(&coords_y, x + 20, y + 40);
-			//printf("X %d, Y %d\n", coords.x, coords.y);
-			//printf("X_x %d, Y_x %d\n", coords_x.x, coords_x.y);
-			//printf("X_y %d, Y_y %d\n", coords_y.x, coords_y.y);
-			//printf("HASDSAD%d", x);
-			if (x < map->width - 1)
+			if (z)
+				coords.color = 0xFFFFFF;
+			else 
+				coords.color = 0xFF0000;
+			if (x <= map->width -1)
 				join_dots(&coords, &coords_x, map, img);
-			if (y < map->height - 1)
+			if (y <= map->height -1)
 				join_dots(&coords, &coords_y, map, img);
 			y++;
 		}
@@ -69,7 +67,7 @@ void join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img) {
     y_aux = a->y * 20;
 	index = 0;
     while (index++ < max) {
-        my_mlx_pixel_put(img, (int)x_aux, (int)y_aux, 0xFF0000);
+        my_mlx_pixel_put(img, (int)x_aux, (int)y_aux, a->color);
         x_aux += x_diff;
         y_aux += y_diff;
     }
