@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/08 20:42:48 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/15 18:22:24 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:38:32 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	paint(t_data *img, t_map *map)
 	{
 		y = 1;
 		while(y <= map->height)
+		{
 			int z = map->matrix[y - 1][x - 1];
 			initialize_coords(&coords, x  + 20, y  + 20);
 			initialize_coords(&coords_x, x  + 40, y + 20);

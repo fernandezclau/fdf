@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/15 18:08:49 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/15 18:40:15 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,4 +93,5 @@ void	process_line(char *line, int *z_matrix);
 int		select_color(int x, int y, t_map *map);
 // -------- WINDOW -------
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+int		exit_program(int key, t_vars *vars);
 #endif
