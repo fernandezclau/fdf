@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 19:29:24 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/10 20:53:12 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/16 20:30:22 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ char	*ft_strtrim(char const *s1, char const *set)
 
 	if (!s1 || !set)
 		return (0);
-	/*while (*s1 && ft_strchr(set, *s1) != 0)
-		s1++;*/
+	while (*s1 && ft_strchr(set, *s1) != 0)
+		s1++;
 	i = ft_strlen(s1);
 	while (i && s1[i -1] && ft_strchr(set, s1[i]) != 0)
 		i--;
