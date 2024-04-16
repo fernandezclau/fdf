@@ -31,9 +31,10 @@ void	paint(t_data *img, t_map *map)
 		while(y <= map->height)
 		{
 			int z = map->matrix[y - 1][x - 1];
-			initialize_coords(&coords, x  + 20, y  + 20);
-			initialize_coords(&coords_x, x  + 40, y + 20);
-			initialize_coords(&coords_y, x + 20, y + 40);
+            printf("%d \n", z);
+			initialize_coords(&coords, x, y, 0);
+			initialize_coords(&coords_x, x, y, 1);
+			initialize_coords(&coords_y, x, y, 2);
 			if (z)
 				coords.color = 0xFFFFFF;
 			else 
@@ -44,6 +45,7 @@ void	paint(t_data *img, t_map *map)
 				join_dots(&coords, &coords_y, map, img);
 			y++;
 		}
+        printf("------------------------\n");
 		x++;
 	}
 }
@@ -55,24 +57,24 @@ void join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img) {
 	float	x_aux;
 	float	y_aux;
 	float	max;
-	int		index;
 	//int		color;
 
-	x_diff = abs(b->x - a->x);
-	y_diff = abs(b->y - a->y);	
+	x_diff = abs(b->x_scaled - a->x_scaled);
+	y_diff = abs(b->y_scaled - a->y_scaled);
 	max = get_max(x_diff, y_diff);
 	x_diff /= max;
 	y_diff /= max;
-	//color = select_color(a->x, a->y, map);
-	x_aux = a->x * 20;
-    y_aux = a->y * 20;
-	index = 0;
-    while (index++ < max) {
+    x_aux = a->x;
+    y_aux = a->y;
+    //color = select_color(a, b, map);
+	x_aux = a->x_scaled * 20;
+    y_aux = a->y_scaled * 20;
+    while (max--) {
         my_mlx_pixel_put(img, (int)x_aux, (int)y_aux, a->color);
         x_aux += x_diff;
         y_aux += y_diff;
     }
-	printf("%d", map->width);
+    printf("\n%d\n", map->height);
 }
 
 

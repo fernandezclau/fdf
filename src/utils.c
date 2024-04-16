@@ -44,16 +44,22 @@ void	process_line(char *line, int  *z_matrix)
 /*
 ** DESC: The 'select_color' changes the color of the rendered bytes.
 */
-int	select_color(int x, int y, t_map *map)
+int	select_color(t_coords *a, t_coords *b, t_map *map)
 {
-	int	aux_x;
-	int	aux_y;
-	int	aux_z;
-
+	int	a_x = a->x -1;
+	int	a_y = a->y -1;
+    int b_x = b->x -1;
+    int b_y = b->y -1;
+	//int	aux_z;
+    printf("AAA X: %d Y: %d --> \n", a_x, a_y);//map->matrix[a_y -20][a_x - 20]);
+    printf("BBB X: %d Y: %d --> \n", b_x , b_y); //map->matrix[a_y -20][a_x - 20]);
+    printf("\n%d\n", map->matrix[a_y][a_x]);
+    return (0);
+/*
 	aux_x = x - 20;
 	aux_y = y - 20;
 	aux_z = map->matrix[x][y];
 	if (aux_z > 0)
 		return (0xFF0000);
-	return (0x0000FF);
+	return (0x0000FF);*/
 }

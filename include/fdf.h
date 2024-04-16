@@ -69,12 +69,14 @@ typedef struct s_coords
 {
 	int	x;
 	int	y;
+    int x_scaled;
+    int y_scaled;
 	int	color;
 
 }				t_coords;
 
 // ------- COORDS -------
-void	initialize_coords(t_coords *coords, int _x, int _y);
+void	initialize_coords(t_coords *coords, int _x, int _y, int dis);
 void	scale_coords(t_coords *a, t_coords *b, int scale);
 void	coords_to_isometric(int *x, int *y, int *x_1, int *y_1, int ** matrix);
 //void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix);
@@ -90,7 +92,7 @@ void	initialize_matrix(t_map *map);
 int		get_max(int num1, int num2);
 int		manage_error(char *message);
 void	process_line(char *line, int *z_matrix);
-int		select_color(int x, int y, t_map *map);
+int		select_color(t_coords *a, t_coords *b, t_map *map);
 // -------- WINDOW -------
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 int		exit_program(int key, t_vars *vars);

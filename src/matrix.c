@@ -92,7 +92,7 @@ void	fill_matrix(t_map *map)
 */
 void	initialize_matrix(t_map *map)
 {
-	map->filename = "test_maps/10-2.fdf";
+	map->filename = "test_maps/42.fdf";
 	ft_printf("El nombre del mapa: %s\n", map->filename);
 	map->height = get_matrix_height(map->filename);
 	ft_printf("La altura del mapa: %d\n", map->height);

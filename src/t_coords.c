@@ -5,11 +5,31 @@
 /*
 ** DESC: The 'initialize_coords' function initializes the members of the 
 ** 't_coord' struct variable.
+ * dis 1 =
 */
-void initialize_coords(t_coords *coord, int _x, int _y)
+void initialize_coords(t_coords *coord, int _x, int _y, int dis)
 {
-	coord->x = _x;
-	coord->y = _y;
+    if (dis == 0)
+    {
+        coord->x_scaled = _x + 20;
+        coord->y_scaled = _y + 20;
+        coord->x = _x;
+        coord->y = _y;
+    }
+    else if (dis == 1)
+    {
+        coord->x_scaled = _x + 40;
+        coord->y_scaled = _y + 20;
+        coord->x = _x + 1;
+        coord->y = _y;
+    }
+    else if (dis == 2)
+    {
+        coord->x_scaled = _x + 20;
+        coord->y_scaled = _y + 40;
+        coord->x = _x;
+        coord->y = _y + 1;
+    }
 }
 
 /*
