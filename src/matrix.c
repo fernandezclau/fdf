@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 09:29:28 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/15 18:20:40 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/16 19:16:05 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,9 +90,9 @@ void	fill_matrix(t_map *map)
 ** DESC: The 'intialize_matrix' function initializes all the members of the
 ** 'map' struct variable.
 */
-void	initialize_matrix(t_map *map)
+void	initialize_matrix(t_map *map, char *filename)
 {
-	map->filename = "test_maps/42.fdf";
+	map->filename = filename;
 	ft_printf("El nombre del mapa: %s\n", map->filename);
 	map->height = get_matrix_height(map->filename);
 	ft_printf("La altura del mapa: %d\n", map->height);

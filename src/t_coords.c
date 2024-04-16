@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   t_coords.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/04/16 20:14:22 by claferna          #+#    #+#             */
+/*   Updated: 2024/04/16 20:17:04 by claferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/fdf.h"
 
 #define ANGLE 0.5
@@ -5,31 +17,35 @@
 /*
 ** DESC: The 'initialize_coords' function initializes the members of the 
 ** 't_coord' struct variable.
- * dis 1 =
+** 
+** OPTIONS: 
+**			dis DEFAULT --> Initialize (x, y) 
+**			dis 2 		--> Initialize (x + 1, y)
+**			dis 3 		--> Initialize (x, y + 1)
 */
-void initialize_coords(t_coords *coord, int _x, int _y, int dis)
+void	initialize_coords(t_coords *coord, int _x, int _y, int dis)
 {
-    if (dis == 0)
-    {
-        coord->x_scaled = _x + 20;
-        coord->y_scaled = _y + 20;
-        coord->x = _x;
-        coord->y = _y;
-    }
-    else if (dis == 1)
-    {
-        coord->x_scaled = _x + 40;
-        coord->y_scaled = _y + 20;
-        coord->x = _x + 1;
-        coord->y = _y;
-    }
-    else if (dis == 2)
-    {
-        coord->x_scaled = _x + 20;
-        coord->y_scaled = _y + 40;
-        coord->x = _x;
-        coord->y = _y + 1;
-    }
+	if (dis == 1)
+	{
+		coord->x_scaled = _x + 40;
+		coord->y_scaled = _y + 20;
+		coord->x = _x + 1;
+		coord->y = _y;
+	}
+	else if (dis == 2)
+	{
+		coord->x_scaled = _x + 20;
+		coord->y_scaled = _y + 40;
+		coord->x = _x;
+		coord->y = _y + 1;
+	}
+	else
+	{
+		coord->x_scaled = _x + 20;
+		coord->y_scaled = _y + 20;
+		coord->x = _x;
+		coord->y = _y;
+	}
 }
 
 /*
@@ -37,19 +53,8 @@ void initialize_coords(t_coords *coord, int _x, int _y, int dis)
 */
 void	scale_coords(t_coords *a, t_coords *b, int scale)
 {
-	int	diff_x;
-	int	diff_y;
-
-	diff_x = b->x - a->x;
-	diff_y = b->y - a->y;
-
-	diff_x *= scale;
-	diff_y *= scale;
-
 	a->x *= scale;
 	a->y *= scale;
-	b->x *= scale;
-	b->y *= scale;
 }
 
 /*
@@ -57,7 +62,7 @@ void	scale_coords(t_coords *a, t_coords *b, int scale)
 ** isometric proyection
 */
 /*
-void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix)
+int	coords_to_isometric(t_coords *a, t_coords *b, int **matrix)
 {
 	int a_z;
 	int b_z;
