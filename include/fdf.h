@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/16 19:23:38 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:49:15 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ typedef struct s_coords
 void	initialize_coords(t_coords *coords, int _x, int _y, int dis);
 void	scale_coords(t_coords *a, t_coords *b, int scale);
 //void	coords_to_isometric(int *x, int *y, int *x_1, int *y_1, int ** matrix);
-//void	coord		isometric(t_coords *a, t_coords *b, int **matrix);
+void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix);
 // ------- RENDER --------
 void	render(t_data *img, t_map *map);
 void	join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img);

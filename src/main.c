@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:32:01 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/16 20:21:03 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/17 16:47:04 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ int	main(int argv, char **argc)
 	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
 			&img.line_length, &img.endian);
 	//matrix initialization, map processing
-	initialize_matrix(&map, filename);
+	initialize_matrix(&map, argc[1]);
 	//rendering matrix
-	render();
+	render(&img, &map);
 	//Putting img to window
 	mlx_put_image_to_window(vars.mlx, vars.win, img.img, 0, 0);
 	//Hooks

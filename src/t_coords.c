@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 20:14:22 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/16 20:17:04 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/17 18:00:15 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,39 @@ void	scale_coords(t_coords *a, t_coords *b, int scale)
 {
 	a->x *= scale;
 	a->y *= scale;
+	b->x *= scale;
+	b->y *= scale;
 }
 
 /*
 ** DESC: The 'coord_to_isometric' functions converts the given coordinates to
 ** isometric proyection
 */
-/*
-int	coords_to_isometric(t_coords *a, t_coords *b, int **matrix)
+void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix)
 {
-	int a_z;
-	int b_z;
+	int	a_z;
+	int	b_z;
 
-	a_z = matrix[a->x][a->y];
-	b_z = matrix[b->x][b->y];
-	a->x = (a->x - a->y) * cos(ANGLE);
-	a->y = (a->x + a->y) * sin(ANGLE) - a_z;
-	b->y = (b->x - b->y) * cos(ANGLE);
-	b->y = (b->x + b->y) * sin(ANGLE) - b_z;
-}*/
+	a_z = matrix[a->y - 1][a->x - 1];
+	b_z = matrix[b->y - 1][b->x - 1];
+	if(a_z > 0)
+    {
+        a->color = 0xFF0000;
+    }
+	else
+		a->color = 0x00FF00;
+    printf("AX: %d, AY: %d\n", a->x_scaled, a->y_scaled);
+    a->x_scaled = (a->x + 20 - a->y + 20) * cos(ANGLE);
+    a->y_scaled = (a->x + 20 + a->y + 20) * sin(ANGLE) - a_z;
+    printf("DX: %d, DY: %d\n", a->x_scaled, a->y_scaled);
+    //b->x_scaled = (b->x + 20 - b->y + 20) * cos(ANGLE);
+    //b->y_scaled = (b->x + 20 + b->y + 20) * sin(ANGLE) - b_z;
+	/*a->x_scaled = ((a->x) - (a->y)) * cos(ANGLE);
+	a->y_scaled = ((a->x) + (a->y)) * sin(ANGLE) - a_z;
+	//printf("ORIGINAL X: %d ORIGINAL Y: %d", a->x -1, a->y -1);
+	printf("AX: %d, AY: %d\n", a->x_scaled, a->y_scaled);
+	b->x_scaled = ((b->x) - (b->y)) * cos(ANGLE);
+	b->y_scaled = ((b->x) + (b->y)) * sin(ANGLE) - b_z;
+	//printf("ORIGINAL X_1: %d ORGINAL Y_1: %d", b->x -1, b->y -1); */
+	//printf("BX: %d, BY: %d\n", a->x_scaled, a->y_scaled);
+}
