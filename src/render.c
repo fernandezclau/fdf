@@ -23,19 +23,19 @@ void	render(t_data *img, t_map *map)
 	int			x;
 	int			y;
 
-	x = 1;
-	while (x <= map->width)
+	x = 0;
+	while (x <= map->width -1)
 	{
-		y = 1;
-		while (y <= map->height)
+		y = 0;
+		while (y <= map->height -1)
 		{
 			initialize_coords(&coords, x, y, 0);
 			initialize_coords(&coords_x, x, y, 1);
 			initialize_coords(&coords_y, x, y, 2);
 			coords.color = 0xFF0000;
-			if (x <= map->width -1)
+			if (x < map->width -1)
 				join_dots(&coords, &coords_x, map, img);
-			if (y <= map->height -1)
+			if (y < map->height -1)
 				join_dots(&coords, &coords_y, map, img);
 			y++;
 		}
@@ -50,26 +50,30 @@ void	join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img)
 {
 	float	x_diff;
 	float	y_diff;
-	float	x_aux;
-	float	y_aux;
 	float	max;
 
-	coords_to_isometric(a, b, map->matrix);
-	x_diff = abs(b->x_scaled - a->x_scaled);
-	y_diff = abs(b->y_scaled - a->y_scaled);
-	max = get_max(x_diff, y_diff);
+   coords_to_isometric(a, b, map->matrix);
+	x_diff = (b->x_scaled) - (a->x_scaled);
+	y_diff = (b->y_scaled) - (a->y_scaled);
+	max = get_max(fabsf(x_diff), fabsf(y_diff));
 	x_diff /= max;
 	y_diff /= max;
-	x_aux = a->x_scaled * 20;
-	y_aux = a->y_scaled * 20;
-//	float x_aux_1 = b->x_scaled * 20;
-//	float y_aux_1 = b->x_scaled * 20;
-	while (max--)//(int) (x_aux - x_aux_1) || (int) (y_aux - y_aux_1))
+    //scale_coords(a, b, 20);
+    printf("Esto es max %f\n",max);
+   float x_aux = a->x_scaled *= 10;
+   float y_aux = a->y_scaled *= 10;
+   float x_aux_1 = b->x_scaled *= 10;
+   float y_aux_1 = b->y_scaled *= 10;
+   //max += 10;
+    while ((int) (x_aux - x_aux_1) || (int)(y_aux - y_aux_1))
 	{
-		my_mlx_pixel_put(img, (int)x_aux, (int)y_aux, a->color);
-		x_aux += x_diff;
-		y_aux += y_diff;
+        if (( x_aux > 0 && x_aux < 1280) && ( y_aux > 0 && y_aux < 920))
+		    my_mlx_pixel_put(img, (int)x_aux, (int)y_aux , a->color);
+        x_aux += x_diff;
+        y_aux += y_diff;
+        //printf("Max = %f\n", max);
 	}
+    printf("'%d' puntero '%p'", map->width, img);
 }
 
 int	main(void)

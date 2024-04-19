@@ -83,8 +83,8 @@ typedef struct s_coords
 {
 	int	x;
 	int	y;
-	int	x_scaled;
-	int	y_scaled;
+	float 	x_scaled;
+	float 	y_scaled;
 	int	color;
 }				t_coords;
 
@@ -102,7 +102,7 @@ int		get_matrix_height(char *file_name);
 void	fill_matrix(t_map *map);
 void	initialize_matrix(t_map *map, char *filename);
 // -------- UTILS -------- 
-int		get_max(int num1, int num2);
+float   get_max(float num1, float num2);
 int		manage_error(char *message);
 void	process_line(char *line, int *z_matrix);
 int		select_color(t_coords *a, t_coords *b, t_map *map);

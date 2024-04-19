@@ -12,7 +12,7 @@
 
 #include "../include/fdf.h"
 
-#define ANGLE 0.5
+#define ANGLE 0.523539
 
 /*
 ** DESC: The 'initialize_coords' function initializes the members of the 
@@ -27,22 +27,22 @@ void	initialize_coords(t_coords *coord, int _x, int _y, int dis)
 {
 	if (dis == 1)
 	{
-		coord->x_scaled = _x + 40;
-		coord->y_scaled = _y + 20;
+		coord->x_scaled = _x + 20;
+		coord->y_scaled = _y + 10;
 		coord->x = _x + 1;
 		coord->y = _y;
 	}
 	else if (dis == 2)
 	{
-		coord->x_scaled = _x + 20;
-		coord->y_scaled = _y + 40;
+		coord->x_scaled = _x + 10;
+		coord->y_scaled = _y + 20;
 		coord->x = _x;
 		coord->y = _y + 1;
 	}
 	else
 	{
-		coord->x_scaled = _x + 20;
-		coord->y_scaled = _y + 20;
+		coord->x_scaled = _x + 10;
+		coord->y_scaled = _y + 10;
 		coord->x = _x;
 		coord->y = _y;
 	}
@@ -68,18 +68,20 @@ void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix)
 	int	a_z;
 	int	b_z;
 
-	a_z = matrix[a->y - 1][a->x - 1];
-	b_z = matrix[b->y - 1][b->x - 1];
-	if(a_z > 0)
-    {
-        a->color = 0xFF0000;
-    }
-	else
-		a->color = 0x00FF00;
-    printf("AX: %d, AY: %d\n", a->x_scaled, a->y_scaled);
-    a->x_scaled = (a->x + 20 - a->y + 20) * cos(ANGLE);
-    a->y_scaled = (a->x + 20 + a->y + 20) * sin(ANGLE) - a_z;
-    printf("DX: %d, DY: %d\n", a->x_scaled, a->y_scaled);
+    a_z = matrix[a->y][a->x];
+    b_z = matrix[b->y][b->x];
+
+    printf("1ALLega x '%f' y '%f'\n", a->x_scaled, a->y_scaled);
+    printf("1BLLega x '%f' y '%f'\n", b->x_scaled, b->y_scaled);
+    a->x_scaled= (a->x - a->y) * cos(ANGLE);
+    a->y_scaled = (a->x + a->y) * sin(ANGLE) - (a_z);
+
+    printf("2ALLega x '%f' y '%f'\n", a->x_scaled, a->y_scaled);
+    printf("2BLLega x '%f' y '%f'\n", b->x_scaled, b->y_scaled);
+    b->x_scaled = (b->x - b->y) * cos(ANGLE);
+    b->y_scaled = (b->x + b->y) * sin(ANGLE)- (b_z);
+    printf("Mapaaa %d\n", matrix[0][0]);
+    //rintf("DX: %d, DY: %d\n", a->x_scaled, a->y_scaled);
     //b->x_scaled = (b->x + 20 - b->y + 20) * cos(ANGLE);
     //b->y_scaled = (b->x + 20 + b->y + 20) * sin(ANGLE) - b_z;
 	/*a->x_scaled = ((a->x) - (a->y)) * cos(ANGLE);

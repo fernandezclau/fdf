@@ -15,7 +15,7 @@
 /*
 ** DESC: Gets the max value from two numbers
 */
-int	get_max(int num1, int num2)
+float	get_max(float num1, float num2)
 {
 	if (num1 > num2)
 		return (num1);
