@@ -70,26 +70,8 @@ void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix)
 
     a_z = matrix[a->y][a->x];
     b_z = matrix[b->y][b->x];
-
-    printf("1ALLega x '%f' y '%f'\n", a->x_scaled, a->y_scaled);
-    printf("1BLLega x '%f' y '%f'\n", b->x_scaled, b->y_scaled);
     a->x_scaled= (a->x - a->y) * cos(ANGLE);
     a->y_scaled = (a->x + a->y) * sin(ANGLE) - (a_z);
-
-    printf("2ALLega x '%f' y '%f'\n", a->x_scaled, a->y_scaled);
-    printf("2BLLega x '%f' y '%f'\n", b->x_scaled, b->y_scaled);
     b->x_scaled = (b->x - b->y) * cos(ANGLE);
     b->y_scaled = (b->x + b->y) * sin(ANGLE)- (b_z);
-    printf("Mapaaa %d\n", matrix[0][0]);
-    //rintf("DX: %d, DY: %d\n", a->x_scaled, a->y_scaled);
-    //b->x_scaled = (b->x + 20 - b->y + 20) * cos(ANGLE);
-    //b->y_scaled = (b->x + 20 + b->y + 20) * sin(ANGLE) - b_z;
-	/*a->x_scaled = ((a->x) - (a->y)) * cos(ANGLE);
-	a->y_scaled = ((a->x) + (a->y)) * sin(ANGLE) - a_z;
-	//printf("ORIGINAL X: %d ORIGINAL Y: %d", a->x -1, a->y -1);
-	printf("AX: %d, AY: %d\n", a->x_scaled, a->y_scaled);
-	b->x_scaled = ((b->x) - (b->y)) * cos(ANGLE);
-	b->y_scaled = ((b->x) + (b->y)) * sin(ANGLE) - b_z;
-	//printf("ORIGINAL X_1: %d ORGINAL Y_1: %d", b->x -1, b->y -1); */
-	//printf("BX: %d, BY: %d\n", a->x_scaled, a->y_scaled);
 }

@@ -51,6 +51,10 @@ void	join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img)
 	float	x_diff;
 	float	y_diff;
 	float	max;
+    float x_aux;
+    float y_aux;
+    float x_aux_1;
+    float y_aux_1;
 
    coords_to_isometric(a, b, map->matrix);
 	x_diff = (b->x_scaled) - (a->x_scaled);
@@ -58,22 +62,17 @@ void	join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img)
 	max = get_max(fabsf(x_diff), fabsf(y_diff));
 	x_diff /= max;
 	y_diff /= max;
-    //scale_coords(a, b, 20);
-    printf("Esto es max %f\n",max);
-   float x_aux = a->x_scaled *= 10;
-   float y_aux = a->y_scaled *= 10;
-   float x_aux_1 = b->x_scaled *= 10;
-   float y_aux_1 = b->y_scaled *= 10;
-   //max += 10;
+    x_aux = a->x_scaled *= 10;
+    y_aux = a->y_scaled *= 10;
+    x_aux_1 = b->x_scaled *= 10;
+    y_aux_1 = b->y_scaled *= 10;
     while ((int) (x_aux - x_aux_1) || (int)(y_aux - y_aux_1))
 	{
         if (( x_aux > 0 && x_aux < 1280) && ( y_aux > 0 && y_aux < 920))
 		    my_mlx_pixel_put(img, (int)x_aux, (int)y_aux , a->color);
         x_aux += x_diff;
         y_aux += y_diff;
-        //printf("Max = %f\n", max);
 	}
-    printf("'%d' puntero '%p'", map->width, img);
 }
 
 int	main(void)
