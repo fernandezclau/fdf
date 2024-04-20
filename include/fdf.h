@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/20 15:28:38 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/20 17:14:09 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@
 # define HEIGHT	1080
 # define WIDTH	1920
 // ------ ISOMETRIC ----
-# define ANGLE	0.523539
+# define ANGLE 0.32344
 
 // ---- COMPILATION ----
 //cc main.c -o mi_programa -L./minilibx -lmlx
@@ -96,7 +96,7 @@ typedef struct s_coords
 // ------- COORDS -------
 void	initialize_coords(t_coords *coords, int _x, int _y, int dis);
 void	scale_coords(t_coords *a, t_coords *b, int scale);
-void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix);
+void	coords_to_isometric(t_coords *a, t_coords *b, t_map *map);
 // ------- RENDER --------
 void	render(t_data *img, t_map *map);
 void	join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img);

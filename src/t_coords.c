@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 20:14:22 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/20 15:28:36 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/20 17:44:42 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,22 +25,22 @@ void	initialize_coords(t_coords *coord, int _x, int _y, int dis)
 {
 	if (dis == 1)
 	{
-		coord->x_scaled = _x + 20;
-		coord->y_scaled = _y + 10;
+		coord->x_scaled = _x + 40;
+		coord->y_scaled = _y + 20;
 		coord->x = _x + 1;
 		coord->y = _y;
 	}
 	else if (dis == 2)
 	{
-		coord->x_scaled = _x + 10;
-		coord->y_scaled = _y + 20;
+		coord->x_scaled = _x + 20;
+		coord->y_scaled = _y + 40;
 		coord->x = _x;
 		coord->y = _y + 1;
 	}
 	else
 	{
-		coord->x_scaled = _x + 10;
-		coord->y_scaled = _y + 10;
+		coord->x_scaled = _x + 20;
+		coord->y_scaled = _y + 20;
 		coord->x = _x;
 		coord->y = _y;
 	}
@@ -61,15 +61,25 @@ void	scale_coords(t_coords *a, t_coords *b, int scale)
 ** DESC: The 'coord_to_isometric' functions converts the given coordinates to
 ** isometric proyection
 */
-void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix)
+void	coords_to_isometric(t_coords *a, t_coords *b, t_map *map)
 {
 	int	a_z;
-	int	b_z;	
+	int	b_z;
 
-	a_z = matrix[a->y][a->x];
-	b_z = matrix[b->y][b->x];
-	a->x_scaled = (a->x - a->y) * cos(ANGLE);
-	a->y_scaled = (a->x + a->y) * sin(ANGLE) - (a_z);
-	b->x_scaled = (b->x - b->y) * cos(ANGLE);
-	b->y_scaled = (b->x + b->y) * sin(ANGLE)- (b_z);
+	a_z = map->matrix[a->y][a->x];
+	b_z = map->matrix[b->y][b->x];
+	if (a_z > 0 && b_z > 0)
+		a->color = 0xFF0000;
+	else if (a_z > 0 || b_z > 0)
+		a->color = 0x0000FF;
+	else if (a_z < 0 && b_z < 0)
+		a->color = 0X00FF00;
+	else if (a_z < 0 || b_z < 0)
+		a->color = 0x0000FF;
+	else
+		a->color = 0xFFFFFF;
+	a->x_scaled = ((a->x) - (a->y)) * cos(0.8660254) + (map->width) / 1.99;
+	a->y_scaled = ((a->x) + (a->y)) * sin(ANGLE) - (a_z) + (map->width) / 1.99;
+	b->x_scaled = ((b->x)- (b->y)) * cos(0.8660254) + (map->width) / 1.99;
+	b->y_scaled = ((b->x) + (b->y)) * sin(ANGLE)- (b_z) + (map->width) / 1.99;
 }

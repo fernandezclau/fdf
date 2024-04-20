@@ -6,7 +6,7 @@
 #    By: claferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/03 18:36:22 by claferna          #+#    #+#              #
-#    Updated: 2024/04/20 14:49:46 by claferna         ###   ########.fr        #
+#    Updated: 2024/04/20 17:04:55 by claferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -66,7 +66,6 @@ OBJS		=	$(SRC:.c=.o)
 # ---------------------------------
 # ------------ RULES --------------
 # ---------------------------------
-
 all			:	$(NAME)
 
 $(NAME)		:	$(OBJS)
@@ -74,7 +73,7 @@ $(NAME)		:	$(OBJS)
 				make -C $(LIBFT) -f Makefile
 				make -C $(PRT) -f Makefile
 				make -C $(LBX) -f Makefile
-			#	$(CC) $(CFLAGS) src/main.c -o fdf -L$(LBX) -lmlx $(LBX_FLAGS) $(GNL_A) $(LIBT_A) $(PRT_A)
+				$(CC) $(CFLAGS) $(OBJS) -o fdf -L$(LBX) -lmlx $(LBX_FLAGS) $(GNL_A) $(LIBFT_A) $(PRT_A)
 				$(AR) $(NAME) $(OBJS)
 
 clean		:	

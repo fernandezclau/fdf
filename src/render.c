@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 18:25:54 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/20 15:28:04 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/20 17:18:28 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,13 +52,13 @@ void	join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img)
 	float	y_diff;
 	float	max;
 
-	coords_to_isometric(a, b, map->matrix);
+	coords_to_isometric(a, b, map);
 	x_diff = (b->x_scaled) - (a->x_scaled);
 	y_diff = (b->y_scaled) - (a->y_scaled);
 	max = get_max(fabsf(x_diff), fabsf(y_diff));
 	x_diff /= max;
 	y_diff /= max;
-	scale_coords(a, b, 10);
+	scale_coords(a, b, 20);
 	while ((int)(a->x_scaled - b->x_scaled) || \
 			(int)(a->y_scaled - b->y_scaled))
 	{
