@@ -6,13 +6,11 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 20:14:22 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/17 18:00:15 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:28:36 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
-
-#define ANGLE 0.523539
 
 /*
 ** DESC: The 'initialize_coords' function initializes the members of the 
@@ -53,10 +51,10 @@ void	initialize_coords(t_coords *coord, int _x, int _y, int dis)
 */
 void	scale_coords(t_coords *a, t_coords *b, int scale)
 {
-	a->x *= scale;
-	a->y *= scale;
-	b->x *= scale;
-	b->y *= scale;
+	a->x_scaled *= scale;
+	a->y_scaled *= scale;
+	b->x_scaled *= scale;
+	b->y_scaled *= scale;
 }
 
 /*
@@ -66,12 +64,12 @@ void	scale_coords(t_coords *a, t_coords *b, int scale)
 void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix)
 {
 	int	a_z;
-	int	b_z;
+	int	b_z;	
 
-    a_z = matrix[a->y][a->x];
-    b_z = matrix[b->y][b->x];
-    a->x_scaled= (a->x - a->y) * cos(ANGLE);
-    a->y_scaled = (a->x + a->y) * sin(ANGLE) - (a_z);
-    b->x_scaled = (b->x - b->y) * cos(ANGLE);
-    b->y_scaled = (b->x + b->y) * sin(ANGLE)- (b_z);
+	a_z = matrix[a->y][a->x];
+	b_z = matrix[b->y][b->x];
+	a->x_scaled = (a->x - a->y) * cos(ANGLE);
+	a->y_scaled = (a->x + a->y) * sin(ANGLE) - (a_z);
+	b->x_scaled = (b->x - b->y) * cos(ANGLE);
+	b->y_scaled = (b->x + b->y) * sin(ANGLE)- (b_z);
 }

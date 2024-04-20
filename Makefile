@@ -6,7 +6,7 @@
 #    By: claferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/03 18:36:22 by claferna          #+#    #+#              #
-#    Updated: 2024/04/16 19:26:12 by claferna         ###   ########.fr        #
+#    Updated: 2024/04/20 14:49:46 by claferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ NAME	=	fdf.a
 
 CC		=	cc
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror
 
 RM		=	rm -f
 
@@ -59,7 +59,7 @@ OBJDIR		=	obj
 # ---------------------------------
 
 SRC		=	src/main.c src/matrix.c src/render.c src/t_coords.c\
-			src/utils.c src/window_utils.c
+			src/window_utils.c src/utils.c
 
 OBJS		=	$(SRC:.c=.o)
 

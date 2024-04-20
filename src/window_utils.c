@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 17:55:29 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/16 20:07:17 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:14:58 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ int	close_window_x(void *param)
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color)
 {
 	char	*dst;
-
 
 	dst = data->addr + (y * data->line_length + x * (data->bits_per_pixel) / 8);
 	*(unsigned int *)dst = color;

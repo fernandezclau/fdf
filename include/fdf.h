@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/17 16:49:15 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/20 15:28:38 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,11 @@
 # define DESTROY_NOTIFY  17  //close button
 # define ESC_KEY         53  //esc key
 # define CONFIGURE_NOTIFY 22 //Resizing
+// ------ WINDOW SIZING ----
+# define HEIGHT	1080
+# define WIDTH	1920
+// ------ ISOMETRIC ----
+# define ANGLE	0.523539
 
 // ---- COMPILATION ----
 //cc main.c -o mi_programa -L./minilibx -lmlx
@@ -81,17 +86,16 @@ typedef struct s_map
 */
 typedef struct s_coords
 {
-	int	x;
-	int	y;
-	float 	x_scaled;
-	float 	y_scaled;
-	int	color;
+	int		x;
+	int		y;
+	float	x_scaled;
+	float	y_scaled;
+	int		color;
 }				t_coords;
 
 // ------- COORDS -------
 void	initialize_coords(t_coords *coords, int _x, int _y, int dis);
 void	scale_coords(t_coords *a, t_coords *b, int scale);
-//void	coords_to_isometric(int *x, int *y, int *x_1, int *y_1, int ** matrix);
 void	coords_to_isometric(t_coords *a, t_coords *b, int **matrix);
 // ------- RENDER --------
 void	render(t_data *img, t_map *map);
@@ -102,7 +106,7 @@ int		get_matrix_height(char *file_name);
 void	fill_matrix(t_map *map);
 void	initialize_matrix(t_map *map, char *filename);
 // -------- UTILS -------- 
-float   get_max(float num1, float num2);
+float	get_max(float num1, float num2);
 int		manage_error(char *message);
 void	process_line(char *line, int *z_matrix);
 int		select_color(t_coords *a, t_coords *b, t_map *map);
