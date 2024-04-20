@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 18:25:54 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/17 18:00:18 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/20 14:57:41 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img)
         y_aux += y_diff;
 	}
 }
-
+/*
 int	main(void)
 {
 	t_data	img;
@@ -91,4 +91,4 @@ int	main(void)
 	mlx_hook(img.win_ptr, DESTROY_NOTIFY, 0, close_window_x, NULL);
 	mlx_put_image_to_window(img.mlx_ptr, img.win_ptr, img.img, 0, 0);
 	mlx_loop(img.mlx_ptr);
-}
+}*/
