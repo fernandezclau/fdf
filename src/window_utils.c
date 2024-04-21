@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 17:55:29 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/20 15:14:58 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:32:53 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,29 @@
 /*
 ** DESC: The 'close_window' function exits the program with the 'ESC' key.
 */
-int	close_window(int keycode, void *param)
+int	close_window(int keycode, t_map *map)
 {
 	if (keycode == ESC_KEY)
-	{
 		exit(0);
-	}
-	printf("%p", param);
+	else if (keycode == 122)
+		map->move_x += 5;
+	else if (keycode == PLUS_KEY)
+		map->zoom += 10;
+	else if (keycode == MINUS_KEY)
+		if (map->zoom > 5)
+			map->zoom -= 5;
+	mlx_destroy_image(map->img.mlx_ptr, map->img.img);
+	map->img.img = mlx_new_image(map->img.mlx_ptr, WIDTH, HEIGHT);
+	render(&map->img, map);
+	mlx_put_image_to_window(map->img.mlx_ptr, map->img.win_ptr, \
+			map->img.img, 1, 1);
+	return (0);
+}
+
+int	key_hold(int keycode, t_map *map)
+{
+	if (keycode == W_KEY)
+		printf("asd%d", map->width);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 18:25:54 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/20 17:18:28 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:30:47 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	render(t_data *img, t_map *map)
 			initialize_coords(&coords, x, y, 0);
 			initialize_coords(&coords_x, x, y, 1);
 			initialize_coords(&coords_y, x, y, 2);
-			coords.color = 0xFF0000;
 			if (x < map->width -1)
 				join_dots(&coords, &coords_x, map, img);
 			if (y < map->height -1)
@@ -58,7 +57,7 @@ void	join_dots(t_coords *a, t_coords *b, t_map *map, t_data *img)
 	max = get_max(fabsf(x_diff), fabsf(y_diff));
 	x_diff /= max;
 	y_diff /= max;
-	scale_coords(a, b, 20);
+	scale_coords(a, b, map->zoom);
 	while ((int)(a->x_scaled - b->x_scaled) || \
 			(int)(a->y_scaled - b->y_scaled))
 	{

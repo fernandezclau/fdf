@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 09:29:28 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/20 15:11:05 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:25:38 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,10 @@ void	initialize_matrix(t_map *map, char *filename)
 	ft_printf("La altura del mapa: %d\n", map->height);
 	map->width = get_matrix_width(map->filename);
 	ft_printf("La anchura del mapa: %d\n", map->width);
+	map->zoom = 10;
+	ft_printf("El zoom está establecido en: %d", map->zoom);
+	map->move_x = map->width;
+	map->move_y = map->height;
 	fill_matrix(map);
 }
 /*

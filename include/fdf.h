@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/20 17:14:09 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:25:02 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,16 @@
 # include "../lib/printf/ft_printf.h"			//printf
 
 // ---- WINDOWS KEYS ----
-# define KEY_PRESS       2   //key pressing
-# define DESTROY_NOTIFY  17  //close button
-# define ESC_KEY         53  //esc key
-# define CONFIGURE_NOTIFY 22 //Resizing
+# define KEY_PRESS       	2   //key pressing
+# define DESTROY_NOTIFY  	17  //close button
+# define ESC_KEY         	53  //esc key
+# define CONFIGURE_NOTIFY 	22 //Resizing
+# define PLUS_KEY			69	//'+'
+# define MINUS_KEY			78	// '-'
+# define W_KEY				119	//w
+# define A_KEY				97	//a
+# define S_KEY				115	//S
+# define D_KEY				100	//D
 // ------ WINDOW SIZING ----
 # define HEIGHT	1080
 # define WIDTH	1920
@@ -78,7 +84,10 @@ typedef struct s_map
 	int		height;
 	int		**matrix;
 	char	*filename;
-
+	int		zoom;
+	int		move_x;
+	int		move_y;
+	t_data	img;
 }				t_map;
 
 /*
@@ -112,6 +121,8 @@ void	process_line(char *line, int *z_matrix);
 int		select_color(t_coords *a, t_coords *b, t_map *map);
 // -------- WINDOW -------
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
-int		close_window(int keycode, void *param);
+int		close_window(int keycode, t_map *map);
 int		close_window_x(void *param);
+int		expose_handle(t_map *map);
+int		key_hold(int keycode, t_map *map);
 #endif

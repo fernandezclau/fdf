@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:32:01 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/20 15:10:36 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/21 17:29:17 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,24 @@
 
 int	main(int argv, char **argc)
 {
-	t_data	img;
 	t_map	map;
 
 	if (argv != 2)
 		return (manage_error("Please, enter a map :)\n"));
-	img.mlx_ptr = mlx_init();
-	img.win_ptr = mlx_new_window(img.mlx_ptr, WIDTH, HEIGHT, "FDF");
-	img.img = mlx_new_image(img.mlx_ptr, WIDTH, HEIGHT);
-	img.addr = mlx_get_data_addr(img.img, &img.bits_per_pixel, \
-			&img.line_length, &img.endian);
+	map.zoom = 10;
 	initialize_matrix(&map, argc[1]);
-	render(&img, &map);
-	mlx_hook(img.win_ptr, KEY_PRESS, 0, close_window, NULL);
-	mlx_hook(img.win_ptr, DESTROY_NOTIFY, 0, close_window_x, NULL);
-	mlx_put_image_to_window(img.mlx_ptr, img.win_ptr, img.img, 0, 0);
-	mlx_loop(img.mlx_ptr);
+	map.img.mlx_ptr = mlx_init();
+	map.img.win_ptr = mlx_new_window(map.img.mlx_ptr, WIDTH, HEIGHT, "FDF");
+	map.img.img = mlx_new_image(map.img.mlx_ptr, WIDTH, HEIGHT);
+	map.img.addr = mlx_get_data_addr(map.img.img, &map.img.bits_per_pixel, \
+			&map.img.line_length, &map.img.endian);
+	render(&map.img, &map);
+	system("leaks -q fdf");
+	getchar();
+	mlx_hook(map.img.win_ptr, KEY_PRESS, 0, close_window, &map);
+	mlx_hook(map.img.win_ptr, DESTROY_NOTIFY, 0, close_window_x, NULL);
+	mlx_put_image_to_window(map.img.mlx_ptr, map.img.win_ptr, map.img.img, \
+			0, 0);
+	mlx_loop(map.img.mlx_ptr);
+	system("leaks -q fdf");
 }
