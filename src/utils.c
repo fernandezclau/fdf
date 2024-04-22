@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 20:08:03 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/20 14:47:18 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/22 18:55:20 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,11 @@ void	process_line(char *line, int *z_matrix)
 			i++;
 		}
 	}
+	printf("%p", z_matrix);
 }
 
 /*
+** DESC: The '
 ** DESC: The 'select_color' changes the color of the rendered bytes.
 */
 /*

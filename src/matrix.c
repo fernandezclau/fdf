@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 09:29:28 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/21 17:25:38 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/22 20:03:15 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,14 @@ void	fill_matrix(t_map *map)
 	i = 0;
 	while (i < map->height)
 	{
-		line = get_next_line(fd);
+		line = (char *)malloc(sizeof(char) * map->width);
+		if (!line)
+			return ;
+		line = get_next_line(fd);	
+		printf("%s", line);
 		process_line(line, map->matrix[i]);
 		free(line);
-		i++;
+		i++;	
 	}
 	map->matrix[i] = 0;
 	if (fd == -1)
@@ -100,9 +104,10 @@ void	initialize_matrix(t_map *map, char *filename)
 	ft_printf("La anchura del mapa: %d\n", map->width);
 	map->zoom = 10;
 	ft_printf("El zoom está establecido en: %d", map->zoom);
-	map->move_x = map->width;
-	map->move_y = map->height;
+	map->move_x = 10;
+	map->move_y = 10;
 	fill_matrix(map);
+	ft_printf("The file has been read");
 }
 /*
 int main()

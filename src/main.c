@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/10 18:32:01 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/21 17:29:17 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/22 20:58:25 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,12 +26,18 @@ int	main(int argv, char **argc)
 	map.img.addr = mlx_get_data_addr(map.img.img, &map.img.bits_per_pixel, \
 			&map.img.line_length, &map.img.endian);
 	render(&map.img, &map);
-	system("leaks -q fdf");
-	getchar();
+	initialize_hooks(&map);
 	mlx_hook(map.img.win_ptr, KEY_PRESS, 0, close_window, &map);
 	mlx_hook(map.img.win_ptr, DESTROY_NOTIFY, 0, close_window_x, NULL);
+	mlx_hook(map.img.win_ptr, KEY_PRESS, 0, move, &map);
 	mlx_put_image_to_window(map.img.mlx_ptr, map.img.win_ptr, map.img.img, \
 			0, 0);
 	mlx_loop(map.img.mlx_ptr);
-	system("leaks -q fdf");
+}
+
+void initialize_hooks(t_map *map)
+{
+	mlx_hook(map->img.win_ptr, KEY_PRESS, 0, close_window, &map);
+	mlx_hook(map->img.win_ptr, DESTROY_NOTIFY, 0, close_window_x, NULL);
+	mlx_hook(map->img.win_ptr, KEY_PRESS, 0, move, &map);
 }

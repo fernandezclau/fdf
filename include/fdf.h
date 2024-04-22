@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/21 17:25:02 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/22 20:58:27 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,22 +33,15 @@
 # define CONFIGURE_NOTIFY 	22 //Resizing
 # define PLUS_KEY			69	//'+'
 # define MINUS_KEY			78	// '-'
-# define W_KEY				119	//w
-# define A_KEY				97	//a
-# define S_KEY				115	//S
-# define D_KEY				100	//D
+# define W_KEY				13	//w
+# define A_KEY				0	//a
+# define S_KEY				1	//S
+# define D_KEY				2	//D
 // ------ WINDOW SIZING ----
 # define HEIGHT	1080
 # define WIDTH	1920
 // ------ ISOMETRIC ----
 # define ANGLE 0.32344
-
-// ---- COMPILATION ----
-//cc main.c -o mi_programa -L./minilibx -lmlx
-//-framework OpenGL -framework AppKit
-//cc -Wall -Wextra -Werror src/matrix.c -o mi_programa
-//-L./lib/minilibx -lmlx -framework OpenGL -framework AppKit
-//lib/libft/libft.a lib/getnextline/getnextline.a lib/printf/libftprintf.a fdf.a
 
 /*
 ** DESC: The 't_data' struct is due to optimisation purpouses.
@@ -63,17 +56,6 @@ typedef struct s_data
 	void	*mlx_ptr;
 	void	*win_ptr;
 }				t_data;
-
-/*
-** DESC: The 't_vars' struct stores the mlx ptrs
-*/
-typedef struct s_vars
-{
-	void	*mlx;
-	void	*win;
-	int		width;
-	int		height;
-}				t_vars;
 
 /*
 ** DESC: The 't_map' struct contains info about a map. 
@@ -119,10 +101,12 @@ float	get_max(float num1, float num2);
 int		manage_error(char *message);
 void	process_line(char *line, int *z_matrix);
 int		select_color(t_coords *a, t_coords *b, t_map *map);
-// -------- WINDOW -------
+// -------- IMG -------
+void	destroy_and_render(t_map *map);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
+// ------- HOOKS -----
+void	initialize_hooks(t_map *map);
 int		close_window(int keycode, t_map *map);
-int		close_window_x(void *param);
-int		expose_handle(t_map *map);
-int		key_hold(int keycode, t_map *map);
+int		close_window_x(void);
+int		move(int keycode, t_map *map);
 #endif
