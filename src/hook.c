@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:08:51 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/23 19:22:39 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/23 19:34:18 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 */
 int	close_window_x(t_map *map)
 {
+	destroy_and_release(map);
 	exit(0);
 	printf("%d", map->width);
 	return (0);

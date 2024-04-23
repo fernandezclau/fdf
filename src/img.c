@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:23:00 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/23 18:42:23 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/23 20:01:39 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,33 +24,37 @@ void	destroy_and_render(t_map *map)
 	mlx_put_image_to_window(map->img.mlx_ptr, map->img.win_ptr, \
 			map->img.img, 1, 1);
 }
+
 /*
 ** DESC: The 'destroy_and_release' function destroy all images and windows, and
 ** releases all the allocated memory.
 */
-/*
 void	destroy_and_release(t_map *map)
 {
 	int	x;
 	int	y;
-
-	//mlx_destroy_image(map->img.mlx_ptr, map->img.img);
-	//mlx_destroy_window(map->img.mlx_ptr, map->img.win_ptr);
+	mlx_destroy_image(map->img.mlx_ptr, map->img.img);
+	mlx_destroy_window(map->img.mlx_ptr, map->img.win_ptr);
 	x = 0;
+	printf("\n");
 	while (x < map->height)
 	{
 		y = 0;
 		while (y < map->width)
 		{
-			//free(&map->matrix[y][x]);
+			printf("%d", map->matrix[x][y]);
 			y++;
 		}
+		printf("\n");
 		//free(map->matrix[x]);
 		x++;
 	}
-	//free(map->img.mlx_ptr);
+	free(map->matrix);
+	map->matrix = NULL;
+	system("leaks fdf");
+	getchar();
 	exit(0);
-}*/
+}
 
 /*
 ** DESC: The 'my_mlx_pixel_put' functions optimises the representation of bytes.
