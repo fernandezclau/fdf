@@ -1,48 +1,121 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/03/25 16:52:33 by claferna          #+#    #+#             */
+/*   Updated: 2024/03/27 22:48:45 by claferna         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line.h"
+#include <stdio.h>
 
-char	*set_malloc(char **line, char *buffer)
+/* DESC: The 'ft_find_line' finds the '\n' character in BUFFER_SIZE range.*/
+int	ft_find_line(t_list *list)
 {
-	char		*new;
-	int		len_line;
-	int		len_buffer;
+	int	i;
 
-	len_line = 0;
-	while (*line && (*line)[len_line] && (*line)[len_line] != '\n')
-		len_line++;
-	len_buffer = 0;
-	while (buffer[len_buffer] && buffer[len_buffer] != '\n')
-		len_buffer++;
-	new = (char *)malloc(sizeof(char) * (len_buffer + len_line + 1));
-	if (!new)
-		return (NULL);
-	return (new);
+	if (!list)
+		return (0);
+	while (list)
+	{
+		i = 0;
+		while (list->content[i] && i < BUFFER_SIZE)
+		{
+			if (list->content[i] == '\n')
+				return (1);
+			i++;
+		}
+		list = list->next;
+	}
+	return (0);
 }
 
-int	add_line(char **line, char *buffer)
+/* DESC: The 'ft_lstlast' function finds the last element of a list.*/
+t_list	*ft_lstlast(t_list *list)
 {
-	char		*aux;
-	int		i;
-	int		j;
+	if (!list)
+		return (NULL);
+	while (list->next)
+		list = list->next;
+	return (list);
+}
 
-	aux = set_malloc(line, buffer);
-	if (!aux)
-		return (-1);
+/* DESC: The 'ft_lstadd_line' adds a new element to a list.*/
+void	ft_lstadd_line(t_list **list, char *buffer)
+{
+	t_list	*new_node;
+	t_list	*last_node;
+
+	new_node = (t_list *)malloc(sizeof(t_list));
+	if (!list)
+		return ;
+	last_node = ft_lstlast(*list);
+	if (!new_node)
+		return ;
+	if (!last_node)
+		*list = new_node;
+	else
+		last_node->next = new_node;
+	new_node->content = buffer;
+	new_node->next = NULL;
+}
+
+/* DESC: The 'ft_get_len_line' gets the length of the current line.*/
+int	ft_get_len_line(t_list *list)
+{
+	int	len;
+	int	i;
+
 	i = 0;
-	j = 0;
-	while (*line && (*line)[i] && (*line)[i] != '\n')
-		aux[i++] = (*line)[j++];
-	j = 0;
-	while (buffer[j] && buffer[j] != '\n')
-		aux[i++] = buffer[j++];
-	aux[i] = buffer[j];
-	free(*line);
-	*line = aux;
-	i = 0;
-	while (buffer[j])
-		buffer[i++] = buffer[++j];
-	buffer[i] = '\0';
-	i = 0;
-	while ((*line)[i] && (*line)[i] != '\n')
-		i++;
-	return (i);
+	len = 0;
+	if (!list)
+		return (0);
+	while (list)
+	{
+		i = 0;
+		while (list->content[i] != '\0')
+		{
+			if (list->content[i] == '\n')
+			{
+				len++;
+				return (len);
+			}
+			i++;
+			len++;
+		}
+		list = list->next;
+	}
+	return (len);
+}
+
+/* DESC: The 'ft_extract_line_lst' extracts all the elements of the list 
+corresponding to the current line.*/
+void	ft_extract_line_lst(t_list *list, char *line)
+{
+	int	i;
+	int	k;
+
+	if (!list)
+		return ;
+	k = 0;
+	while (list)
+	{
+		i = 0;
+		while (list->content[i] != '\0')
+		{
+			if (list->content[i] == '\n')
+			{
+				line[k++] = '\n';
+				line[k] = '\0';
+				return ;
+			}
+			line[k++] = list->content[i++];
+		}
+		list = list->next;
+	}
+	line[k] = '\0';
 }

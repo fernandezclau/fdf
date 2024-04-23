@@ -6,7 +6,7 @@
 #    By: claferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/03/13 18:31:20 by claferna          #+#    #+#              #
-#    Updated: 2024/03/18 19:00:33 by claferna         ###   ########.fr        #
+#    Updated: 2024/04/23 18:49:53 by claferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,12 +29,6 @@ SRCS 		= ft_atoi.c ft_isdigit.c ft_memset.c ft_strlcpy.c ft_tolower.c\
 
 OBJS		=	$(SRCS:.c=.o)
 
-SRCS_BONUS 	= ft_lstnew.c ft_lstadd_front.c ft_lstsize.c ft_lstlast.c\
-			  ft_lstadd_back.c ft_lstdelone.c ft_lstclear.c ft_lstiter.c\
-			  ft_lstmap.c\
-
-OBJS_BONUS	=	$(SRCS_BONUS:.c=.o)
-
 all		:	$(NAME)
 
 $(NAME)	:	$(OBJS)
@@ -44,13 +38,10 @@ $(NAME)	:	$(OBJS)
 			cc $(CFLAGS) -c $< -o $(<:.c=.o)
 
 clean	:
-			$(RM) $(OBJS) $(OBJS_BONUS)
+			$(RM) $(OBJS)
 
 fclean	:	clean
 				$(RM) $(NAME)
-bonus	:	$(NAME)
-			cc $(FLAGS) -c $(SRCS_BONUS) -I ./
-			$(LIB) $(NAME) $(OBJS_BONUS)
 
 .PHONY	: 	all clean fclean re
 

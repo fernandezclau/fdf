@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/14 09:29:28 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/22 20:03:15 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:58:17 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,16 +78,14 @@ void	fill_matrix(t_map *map)
 		line = (char *)malloc(sizeof(char) * map->width);
 		if (!line)
 			return ;
-		line = get_next_line(fd);	
-		printf("%s", line);
+		line = get_next_line(fd);
 		process_line(line, map->matrix[i]);
 		free(line);
-		i++;	
+		i++;
 	}
 	map->matrix[i] = 0;
-	if (fd == -1)
+	if (close(fd))
 		return ;
-	close(fd);
 }
 
 /*
@@ -96,6 +94,13 @@ void	fill_matrix(t_map *map)
 */
 void	initialize_matrix(t_map *map, char *filename)
 {
+	int	fd;
+
+	fd = open(filename, O_RDONLY);
+	if (fd == -1)
+		ft_printf("That file does not exist .-.");
+	else
+		close(fd);
 	map->filename = filename;
 	ft_printf("El nombre del mapa: %s\n", map->filename);
 	map->height = get_matrix_height(map->filename);

@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/16 20:14:22 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/22 19:28:59 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/23 19:17:49 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,15 +69,11 @@ void	coords_to_isometric(t_coords *a, t_coords *b, t_map *map)
 	a_z = map->matrix[a->y][a->x];
 	b_z = map->matrix[b->y][b->x];
 	if (a_z > 0 && b_z > 0)
-		a->color = 0xFF0000;
+		a->color = 0x004765;
 	else if (a_z > 0 || b_z > 0)
-		a->color = 0x0000FF;
-	else if (a_z < 0 && b_z < 0)
-		a->color = 0X00FF00;
-	else if (a_z < 0 || b_z < 0)
-		a->color = 0x0000FF;
+		a->color = 0x581845;
 	else
-		a->color = 0xFFFFFF;
+		a->color = 0xB91B58;
 	a->x_scaled = ((a->x) - (a->y)) * cos(0.8660254) + map->move_x;
 	a->y_scaled = ((a->x) + (a->y)) * sin(ANGLE) - (a_z) + map->move_y;
 	b->x_scaled = ((b->x) - (b->y)) * cos(0.8660254) + map->move_x;

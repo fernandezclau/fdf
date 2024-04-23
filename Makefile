@@ -6,7 +6,7 @@
 #    By: claferna <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/04/03 18:36:22 by claferna          #+#    #+#              #
-#    Updated: 2024/04/22 20:44:13 by claferna         ###   ########.fr        #
+#    Updated: 2024/04/23 18:56:55 by claferna         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ OBJDIR		=	obj
 # ---------------------------------
 
 SRC		=	src/main.c src/matrix.c src/render.c src/t_coords.c\
-			src/window_utils.c src/utils.c src/hook.c src/img.c
+			src/utils.c src/hook.c src/img.c
 
 OBJS		=	$(SRC:.c=.o)
 

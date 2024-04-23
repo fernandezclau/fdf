@@ -6,58 +6,30 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/22 20:08:51 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/22 20:57:47 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/23 19:22:39 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../include/fdf.h"
 
 /*
-** DESC: The 'initialize' function initializes all the hooks in the program.
-*/
-/*
-void	initiliaze_hooks(t_map *map)
-{
-	mlx_hook(map->img.win_ptr, KEY_PRESS, 0, close_window, &map);
-	mlx_hook(map->img.win_ptr, DESTROY_NOTIFY, 0, close_window_x, NULL);
-	mlx_hook(map->img.win_ptr, KEY_PRESS, 0, move, &map);
-}
-*/
-/*
-** DESC: The 'close_window' function exits the program with the 'ESC' key.
-*/
-/*
-int	close_window(int keycode, t_map *map)
-{
-	if (keycode == ESC_KEY)
-	{
-		//liberar
-		printf("%d", map->width);
-		exit (0);
-	}
-	return (0);
-}*/
-
-/*
 ** DESC: The 'close_window_x' function exits the program with the 'x' function.
 */
-/*
-int	close_window_x(void)
+int	close_window_x(t_map *map)
 {
-	//liberar
 	exit(0);
+	printf("%d", map->width);
 	return (0);
-}*/
+}
 
 /*
 ** DESC: The 'move' function allows to move the figure around the map.
 */
-/*
 int	move(int keycode, t_map *map)
 {
 	if (keycode == PLUS_KEY)
 	{
-		if (map->zoom < 100)
+		if (map->zoom < 24)
 			map->zoom += 2;
 	}
 	else if (keycode == MINUS_KEY)
@@ -73,6 +45,8 @@ int	move(int keycode, t_map *map)
 		map->move_x += 5;
 	else if (keycode == A_KEY)
 		map->move_x -= 5;
+	else if (keycode == ESC_KEY)
+		exit(0);
 	destroy_and_render(map);
 	return (0);
-}*/
+}

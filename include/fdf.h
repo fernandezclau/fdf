@@ -6,7 +6,7 @@
 /*   By: claferna <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/09 20:23:31 by claferna          #+#    #+#             */
-/*   Updated: 2024/04/22 20:58:27 by claferna         ###   ########.fr       */
+/*   Updated: 2024/04/23 18:28:16 by claferna         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,10 +103,10 @@ void	process_line(char *line, int *z_matrix);
 int		select_color(t_coords *a, t_coords *b, t_map *map);
 // -------- IMG -------
 void	destroy_and_render(t_map *map);
+void	destroy_and_release(t_map *map);
 void	my_mlx_pixel_put(t_data *data, int x, int y, int color);
 // ------- HOOKS -----
 void	initialize_hooks(t_map *map);
-int		close_window(int keycode, t_map *map);
-int		close_window_x(void);
+int		close_window_x(t_map *map);
 int		move(int keycode, t_map *map);
 #endif
